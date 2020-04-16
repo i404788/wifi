@@ -1,5 +1,5 @@
-var request = require('request');
-
+const request = require('request');
+const util = require('util')
 
 module.exports = ({ tokenRouter }) => {
   // getting the dogs route
@@ -29,7 +29,7 @@ module.exports = ({ tokenRouter }) => {
 };
 
 async function getToken(options) {
-    const response = await request(options)
+    const response = await util.promisify(request)(options)
     //ctx.body = response.body;
     var parsedResponse = JSON.parse(response.body);
     console.log(parsedResponse.access_token)
