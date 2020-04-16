@@ -4,10 +4,10 @@ var request = require('request');
 module.exports = ({ tokenRouter }) => {
   // getting the dogs route
   tokenRouter.get('/:code', async (ctx, next) => {
-    var code = ctx.params.code;
+      const code = ctx.params.code;
       //console.log(code)
 
-      var options = {
+      const options = {
         'method': 'POST',
         'url': 'https://identity.fhict.nl/connect/token',
         'headers': {
@@ -22,21 +22,18 @@ module.exports = ({ tokenRouter }) => {
         }
       };
 
-      var token = getToken(options);
+      const token = await getToken(options);
       ctx.body = token;
       console.log("test :" + ctx.body);
   });
 };
 
-function getToken(options) {
-
-    request(options, function (error, response) { 
-        if (error) throw new Error(error);
-        //ctx.body = response.body;
-        var parsedResponse = JSON.parse(response.body);
-        console.log(parsedResponse.access_token)
-        // ctx.body = parsedResponse.access_token;   
-        // console.log(ctx.body);
-        return parsedResponse.access_token;
-      });
+async function getToken(options) {
+    const response = await request(options)
+    //ctx.body = response.body;
+    var parsedResponse = JSON.parse(response.body);
+    console.log(parsedResponse.access_token)
+    // ctx.body = parsedResponse.access_token;   
+    // console.log(ctx.body);
+    return parsedResponse.access_token;
   }
