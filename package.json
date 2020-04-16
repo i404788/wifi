@@ -1,0 +1,20 @@
+{
+    "name": "koa-server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "jest --watchAll",
+        "dev": "nodemon app.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "koa-logger": "^3.2.1"
+    },
+    "devDependencies": {
+        "jest": "^25.3.0",
+        "supertest": "^4.0.2"
+    }
+}
